@@ -1,0 +1,6 @@
+module Pods_OnlineLearningApp_OnlineLearningAppTests {
+  umbrella header "Pods-OnlineLearningApp-OnlineLearningAppTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
