@@ -12,7 +12,7 @@ import {
     COLORS,FONTS,SIZES,icons,constants,dummyData,images
 } from "../../constants";
 
-import { IconButton,TextButton,VerticalCourseCard,LineDivider,CategoryCard } from '../../components';
+import { IconButton,TextButton,VerticalCourseCard,LineDivider,CategoryCard, HorizontalCourseCard } from '../../components';
 
 const Section = ({containerStyle,title,onPress,children}) => {
     return (
@@ -209,6 +209,44 @@ const Home = () => {
             </Section>
         )
     }
+    
+    function renderPopularCourses() {
+        return (
+            <Section
+            title={`Popular Courses`}
+            containerStyle={{
+                marginTop:30,
+            }}
+            >
+                <FlatList
+                data={dummyData.courses_list_2}
+                listKey="PopularCourses"
+                scrollEnabled={false}
+                keyExtractor={(item)=>`PopularCourses-${item.id}`}
+                contentContainerStyle={{
+                    marginTop:SIZES.radius,
+                    paddingHorizontal:SIZES.padding,
+                }}
+                renderItem={({item,index})=>(
+                    <HorizontalCourseCard
+                    course={item}
+                    containerStyle={{
+                        marginVertical:SIZES.padding,
+                        margginTop:index == 0 ? SIZES.radius : SIZES.padding,
+                    }}
+                    />
+                )}
+                ItemSeparatorComponent={()=>(
+                    <LineDivider
+                    lineStyle={{
+                        backgroundColor:COLORS.gray20,
+                    }}
+                    />
+                )}
+                />
+            </Section>
+        )
+    }
 
     return (
         <View
@@ -242,6 +280,9 @@ const Home = () => {
               {/* Categories */}
 
               {renderCategories()}
+
+              {/* Popular courses */}
+              {renderPopularCourses()}
           </ScrollView>
         </View>
     )
